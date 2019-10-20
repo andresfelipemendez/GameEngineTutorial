@@ -15,7 +15,7 @@ Asteroid::Asteroid(Game* game)
 	SetRotation(Random::GetFloatRange(0.0f, Math::TwoPi));
 
 	SpriteComponent* sc = new SpriteComponent(this);
-	sc->SetTexture(game->GetTexture("Assets/Asteroid.png"));
+	//sc->SetTexture(game->GetTexture("Assets/Asteroid.png"));
 
 	MoveComponent* mc = new MoveComponent(this);
 	mc->SetForwardSpeed(150.0f);

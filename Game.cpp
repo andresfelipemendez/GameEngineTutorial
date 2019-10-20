@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "GL/glew.h"
+#include "Texture.h"
 #include "SDL_image.h"
 #include <algorithm>
 #include "Actor.h"
@@ -9,7 +11,7 @@
 
 Game::Game()
 :mWindow(nullptr)
-,mRenderer(nullptr)
+,mContext(nullptr)
 ,mIsRunning(true)
 ,mUpdatingActors(false)
 ,mTicksCount(0)
@@ -24,24 +26,47 @@ bool Game::Initialize()
 		return false;
 	}
 
-	mWindow = SDL_CreateWindow("Game Programming C++ (Chapter 1)",100,100,1024,768,0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3); 
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+
+	mWindow = SDL_CreateWindow("Game Programming C++ (Chapter 5)",100,100,1024,768, SDL_WINDOW_OPENGL);
 	if (!mWindow) {
 		SDL_Log("Failed to create window: %s", SDL_GetError());
 		return false;
 	}
 
-	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (!mRenderer) {
-		SDL_Log("Failed to create renderer: %s", SDL_GetError());
+	mContext = SDL_GL_CreateContext(mWindow);
+
+	glewExperimental = GL_TRUE;
+	if (glewInit() != GLEW_OK)
+	{
+		SDL_Log("Failed to initialize GLEW.");
 		return false;
 	}
 
-	if (IMG_Init(IMG_INIT_PNG) == 0) {
-		SDL_Log("Unable to initialize SDL_Image: %s", SDL_GetError());
+	glGetError();
+
+	if (!LoadShaders())
+	{
+		SDL_Log("Failed to load shaders.");
+		return false;
 	}
 
-	Random::Init();
+	CreateSpriteVerts();
+
 	LoadData();
+
 	mTicksCount = SDL_GetTicks();
 
 	return true;
@@ -123,14 +148,19 @@ void Game::UpdateGame()
 
 void Game::GenerateOutput()
 {
-	SDL_SetRenderDrawColor(mRenderer, 220, 220, 220, 255 );
-	SDL_RenderClear(mRenderer);
+	glClearColor(0.86f, 0.86f, 0.86f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 
-	for (auto sprite : mSprites) {
-		sprite->Draw(mRenderer);
-	}
+	SDL_GL_SwapWindow(mWindow);
+}
 
-	SDL_RenderPresent(mRenderer);
+bool Game::LoadShaders()
+{
+	return true;
+}
+
+void Game::CreateSpriteVerts()
+{
 }
 
 void Game::LoadData()
@@ -160,9 +190,9 @@ void Game::UnloadData()
 	mTextures.clear();
 }
 
-SDL_Texture* Game::GetTexture(const std::string& fileName)
+Texture* Game::GetTexture(const std::string& fileName)
 {
-	SDL_Texture* tex = nullptr;
+	/*SDL_Texture* tex = nullptr;
 	auto iter = mTextures.find(fileName);
 	if (iter != mTextures.end())
 	{
@@ -186,7 +216,8 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 		}
 		mTextures.emplace(fileName.c_str(), tex);
 	}
-	return tex;
+	return tex;*/
+	return nullptr;
 }
 
 void Game::AddAsteroid(Asteroid* ast)
@@ -253,7 +284,7 @@ void Game::Shutdown()
 {
 	UnloadData();
 	IMG_Quit();
-	SDL_DestroyRenderer(mRenderer);
+	SDL_GL_DeleteContext(mContext);
 	SDL_DestroyWindow(mWindow);
 	SDL_Quit();
 }

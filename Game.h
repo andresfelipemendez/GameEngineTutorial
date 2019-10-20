@@ -2,9 +2,11 @@
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
-#include <vector>
-#include <string>
 #include <unordered_map>
+#include <string>
+#include <vector>
+#include "Math.h"
+
 
 class Game
 {
@@ -20,7 +22,7 @@ public:
 	void AddSprite(class SpriteComponent* sprite);
 	void RemoveSprite(class SpriteComponent* sprite);
 
-	SDL_Texture* GetTexture(const std::string& fileName);
+	class Texture* GetTexture(const std::string& fileName);
 
 	void AddAsteroid(class Asteroid* ast);
 	void RemoveAsteroid(class Asteroid* ast);
@@ -29,6 +31,8 @@ private:
 	void ProcessInput();
 	void UpdateGame();
 	void GenerateOutput();
+	bool LoadShaders();
+	void CreateSpriteVerts();
 	void LoadData();
 	void UnloadData();
 
@@ -39,7 +43,7 @@ private:
 	std::vector<class SpriteComponent*> mSprites;
 
 	SDL_Window* mWindow;
-	SDL_Renderer* mRenderer;
+	SDL_GLContext mContext;
 	Uint32 mTicksCount;
 	bool mIsRunning;
 	bool mUpdatingActors;
