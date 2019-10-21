@@ -93,13 +93,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\SOIL\include;C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\felipe\Lib\SDL2_image\lib\x86;C:\Users\felipe\Lib\GLEW\lib;C:\Users\felipe\Lib\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\felipe\Lib\SOIL\lib\win\x86;C:\Users\felipe\Lib\SDL2_image\lib\x86;C:\Users\felipe\Lib\GLEW\lib;C:\Users\felipe\Lib\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;OpenGL32.lib;glew32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,15 +131,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\SOIL\include;C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\felipe\Lib\SDL2_image\lib\x86;C:\Users\felipe\Lib\GLEW\lib;C:\Users\felipe\Lib\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\felipe\Lib\SOIL\lib\win\x86;C:\Users\felipe\Lib\SDL2_image\lib\x86;C:\Users\felipe\Lib\GLEW\lib;C:\Users\felipe\Lib\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;OpenGL32.lib;glew32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -176,9 +176,11 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -192,9 +194,11 @@
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngineTutorial.rc" />

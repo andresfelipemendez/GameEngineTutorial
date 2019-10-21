@@ -3,13 +3,14 @@
 #include "InputComponent.h"
 #include "Game.h"
 #include "Laser.h"
+#include "Texture.h"
 
 Ship::Ship(Game* game)
 	:Actor(game)
 	,mLaserCooldown(0.0f)
 {
 	SpriteComponent* sc = new SpriteComponent(this, 150);
-	//sc->SetTexture(game->GetTexture("Assets/Ship.png"));
+	sc->SetTexture(game->GetTexture("Assets/Ship.png"));
 
 	InputComponent* ic = new InputComponent(this);
 	ic->SetForwardKey(SDL_SCANCODE_W);

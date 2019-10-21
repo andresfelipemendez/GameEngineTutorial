@@ -36,11 +36,14 @@ private:
 	void LoadData();
 	void UnloadData();
 
-	std::unordered_map < std::string, SDL_Texture*> mTextures;
+	std::unordered_map < std::string, class Texture*> mTextures;
 
 	std::vector<class Actor*>mPendingActors;
 	std::vector<class Actor*>mActors;
 	std::vector<class SpriteComponent*> mSprites;
+
+	class Shader* mSpriteShader;
+	class VertexArray* mSpriteVerts;
 
 	SDL_Window* mWindow;
 	SDL_GLContext mContext;
@@ -50,5 +53,7 @@ private:
 
 	class Ship* mShip;
 	std::vector<class Asteroid*> mAsteroids;
+
+	
 };
 

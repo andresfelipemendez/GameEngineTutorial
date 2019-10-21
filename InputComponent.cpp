@@ -14,23 +14,23 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 {
 	float forwardSpeed = 0.0f;
 	if (keyState[mForwardKey]) {
-		forwardSpeed += mMaxForwardSpeed;
+		forwardSpeed -= mMaxForwardSpeed;
 	}
 
 	if (keyState[mBackKey])
 	{
-		forwardSpeed -= mMaxForwardSpeed;
+		forwardSpeed += mMaxForwardSpeed;
 	}
 	SetForwardSpeed(forwardSpeed);
 
 	float angularSpeed = 0.0f;
 	if (keyState[mClockWiseKey])
 	{
-		angularSpeed += mMaxAngularSpeed;
+		angularSpeed -= mMaxAngularSpeed;
 	}
 	if (keyState[mCounterClockWiseKey])
 	{
-		angularSpeed -= mMaxAngularSpeed;
+		angularSpeed += mMaxAngularSpeed;
 	}
 	SetAngularSpeed(angularSpeed);
 }
