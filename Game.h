@@ -19,41 +19,23 @@ public:
 	void AddActor(class Actor* actor);
 	void RemoveActor(class Actor* actor);
 
-	void AddSprite(class SpriteComponent* sprite);
-	void RemoveSprite(class SpriteComponent* sprite);
-
-	class Texture* GetTexture(const std::string& fileName);
-
-	void AddAsteroid(class Asteroid* ast);
-	void RemoveAsteroid(class Asteroid* ast);
-	std::vector<class Asteroid*>& GetAsteroids() { return mAsteroids; }
+	class Renderer* GetRenderer() { return mRenderer; };
 private:
 	void ProcessInput();
 	void UpdateGame();
 	void GenerateOutput();
-	bool LoadShaders();
-	void CreateSpriteVerts();
 	void LoadData();
 	void UnloadData();
 
-	std::unordered_map < std::string, class Texture*> mTextures;
-
+	std::vector<class Actor *> mActors;
 	std::vector<class Actor*>mPendingActors;
-	std::vector<class Actor*>mActors;
-	std::vector<class SpriteComponent*> mSprites;
+	
+	class Renderer* mRenderer;
 
-	class Shader* mSpriteShader;
-	class VertexArray* mSpriteVerts;
-
-	SDL_Window* mWindow;
-	SDL_GLContext mContext;
 	Uint32 mTicksCount;
 	bool mIsRunning;
 	bool mUpdatingActors;
 
-	class Ship* mShip;
-	std::vector<class Asteroid*> mAsteroids;
-
-	
+	class CameraActor* mCameraActor;	
 };
 

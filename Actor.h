@@ -22,27 +22,29 @@ public:
 	void ProcessInput(const uint8_t* keyState);
 	virtual void ActorInput(const uint8_t* keyState);
 
-	const Vector2& GetPosition() const { return mPosition; }
-	void SetPosition(const Vector2& pos) { 
+	const Vector3& GetPosition() const { return mPosition; }
+	void SetPosition(const Vector3& pos) { 
 		mPosition = pos; 
 		mRecomputeWorldTransform = true;
 	}
-	float GetRotation() const { return mRotation; }
-	void SetRotation(float rotation) { 
+	
+	float GetScale() const { return mScale; }
+	void SetScale(float scale) { mScale = scale; }
+
+	const Quaternion& GetRotation() const { return mRotation; }
+	void SetRotation(const Quaternion& rotation) { 
 		mRotation = rotation; 
 		mRecomputeWorldTransform = true;
 	}
-	float GetScale() const { return mScale; }
-	void SetScale (float scale) { mScale = scale; }
-
+	
 	void ComputeWorldTransform();
 	const Matrix4& GetWorldTransform() const { return mWorldTransform; }
 
-	Vector2 GetForward() const {
-		return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation));
+	Vector3 GetForward() const {
+		return Vector3::Transform(Vector3::UnitX, mRotation);
 	}
 
-	Actor::State GetState() const { return mState; }
+	State GetState() const { return mState; }
 	void SetState(State state) { mState = state; }
 
 	class Game* GetGame() { return mGame; }
@@ -54,14 +56,13 @@ private:
 	State mState;
 
 	Matrix4 mWorldTransform;
-	Vector2 mPosition;
+	Vector3 mPosition;
+	Quaternion mRotation;
 	float mScale;
-	float mRotation;
 	bool mRecomputeWorldTransform;
 
 	std::vector<class Component*> mComponents;
 	class Game* mGame;
-public:
-	
+
 };
 

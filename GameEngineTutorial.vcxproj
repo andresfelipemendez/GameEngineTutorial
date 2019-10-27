@@ -93,7 +93,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\SOIL\include;C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\rapidjson\include;C:\Users\felipe\Lib\SOIL\include;C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\SOIL\include;C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\felipe\Lib\rapidjson\include;C:\Users\felipe\Lib\SOIL\include;C:\Users\felipe\Lib\SDL2_image\include;C:\Users\felipe\Lib\GLEW\include;C:\Users\felipe\Lib\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,36 +166,40 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="CameraActor.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEngineTutorial.cpp" />
     <ClCompile Include="InputComponent.cpp" />
-    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="PlaneActor.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="CameraActor.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputComponent.h" />
-    <ClInclude Include="Laser.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="PlaneActor.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexArray.h" />

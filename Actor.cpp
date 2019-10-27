@@ -5,9 +5,9 @@
 
 Actor::Actor(Game* game)
 	:mState(EActive)
-	,mPosition(Vector2::Zero)
+	,mPosition(Vector3::Zero)
+	,mRotation(Quaternion::Identity)
 	,mScale(1.0f)
-	,mRotation(0.0f)
 	,mGame(game)
 	,mRecomputeWorldTransform(true)
 {
@@ -52,7 +52,7 @@ void Actor::ProcessInput(const uint8_t* keyState)
 {
 	if (mState == EActive)
 	{
-		if(mComponents.size() > 0){
+		if (!mComponents.empty()) {
 			for (auto comp : mComponents)
 			{
 				comp->ProcessInput(keyState);
@@ -73,8 +73,8 @@ void Actor::ComputeWorldTransform()
 		mRecomputeWorldTransform = false;
 
 		mWorldTransform = Matrix4::CreateScale(mScale);
-		mWorldTransform *= Matrix4::CreateRotationZ(mRotation);
-		mWorldTransform *= Matrix4::CreateTranslation(Vector3(mPosition.x, mPosition.y, 0.0f));
+		mWorldTransform *= Matrix4::CreateFromQuaternion(mRotation);
+		mWorldTransform *= Matrix4::CreateTranslation(mPosition);
 
 		for (auto comp : mComponents)
 		{
@@ -83,25 +83,28 @@ void Actor::ComputeWorldTransform()
 	}
 }
 
+
 void Actor::AddComponent(Component* component)
 {
-	int myOrder = component->GetUpdateOrder();
-	auto iter = mComponents.begin();
-	for (; iter != mComponents.end(); ++iter)
+	const int myOrder = component->GetUpdateOrder();
+	auto i = mComponents.begin();
+	for (; i != mComponents.end(); ++i)
 	{
-		if (myOrder << (*iter)->GetUpdateOrder())
+		if (myOrder << (*i)->GetUpdateOrder())
 		{
 			break;
 		}
 	}
-	mComponents.insert(iter, component);
+	mComponents.insert(i, component);
 }
+
+
 
 void Actor::RemoveComponent(Component* component)
 {
-	auto iter = std::find(mComponents.begin(), mComponents.end(), component);
-	if (iter != mComponents.end())
+	auto i = std::find(mComponents.begin(), mComponents.end(), component);
+	if (i != mComponents.end())
 	{
-		mComponents.erase(iter);
+		mComponents.erase(i);
 	}
 }
