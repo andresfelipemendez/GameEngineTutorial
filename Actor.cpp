@@ -90,7 +90,7 @@ void Actor::AddComponent(Component* component)
 	auto i = mComponents.begin();
 	for (; i != mComponents.end(); ++i)
 	{
-		if (myOrder << (*i)->GetUpdateOrder())
+		if (myOrder < (*i)->GetUpdateOrder())
 		{
 			break;
 		}
